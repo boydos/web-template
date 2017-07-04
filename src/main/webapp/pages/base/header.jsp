@@ -12,7 +12,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 <jsp:include page="../dependency/comcss.jsp" flush="true" />
 <jsp:include page="../dependency/comjs.jsp" flush="true" />
-<title>数据所™分发平台 - NESSERVER</title>
+<title>纵横数据中心</title>
 </head>
 <body class="page-header-fixed">
 <jsp:include page="../dependency/notyDependency.jsp" flush="true"/>

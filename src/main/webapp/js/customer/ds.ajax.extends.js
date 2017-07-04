@@ -19,4 +19,27 @@
 		});
 		return deferred.promise();
 	};
+	ds.isEmpty = function (value) {
+		return value ==null||value.length==0;
+	};
+	ds.formatByteSize =function(size) {
+		if(size <1024) {
+			return size +"B"
+		} else if (size <1024*1024) {
+			return this.xround(size/1024,2) +"KB"
+		} else if (size <1024*1024*1024) {
+			return this.xround(size/(1024*1024),2) +"MB"
+		} else if (size <1024*1024*1024*1024) {
+			return this.xround(size/(1024*1024*1024),2) +"GB"
+		} else {
+			return this.xround(size/(1024*1024*1024*1024),2) +"TB"
+		}
+	},
+	ds.round = function (x, num){
+	    return Math.round(x * Math.pow(10, num)) / Math.pow(10, num) ;
+	}
+	ds.isEmail = function (email) {
+		var reg=/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
+		return reg.test(email);
+	}
 })(jQuery);

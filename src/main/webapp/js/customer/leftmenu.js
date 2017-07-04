@@ -9,21 +9,9 @@ function LeftMenu (id) {
 	this.menuDom=$('<ul class="page-sidebar-menu"></ul>');
 	
 	this.menuData =[
-	           { url:"pages/home.jsp",title:"DashBoard",icon:"icon-home"},
-	           { title:"直播中心",icon:"icon-cogs",sub:[
-	                  {url:"pages/userconfig.jsp",title:"用户管理"},
-	                  {url:"pages/liveconfig.jsp",title:"直播管理"},
-	                  {url:"pages/videoconfig.jsp",title:"视频管理"},
-	                  {url:"pages/serverconfig.jsp",title:"服务器配置"}
-	             ]
-	           },
-	           { title:"数据导入",icon:"icon-cogs",sub:[
-	                 {url:"pages/newsconfig.jsp",title:"新闻导入"},
-	                 {url:"pages/wthconfig.jsp",title:"天气导入"},
-	                 {url:"pages/appconfig.jsp",title:"应用导入"}
-	             ]
-	           }
-	           ];
+	           { url:"pages/home.jsp",title:"首页",icon:"icon-home"},
+	           { title:"用户中心",icon:"icon-cogs",sub:[ {url:"pages/userlist.jsp",title:"用户管理"}]}
+	     ];
 	this.currentUrl=window.location.pathname;
 	this.defaultUrl = this.menuData[0]["url"]||"pages/home.jsp";
 }

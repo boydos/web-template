@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<jsp:include page="base/header.jsp"></jsp:include>
-
+<jsp:include page="base/header.jsp"/>
 <div class="page-content">
 	<div class="container-fluid">
 		<div class="row-fluid">
@@ -21,15 +20,21 @@
 			</div>
 		</div>
 		<div id="dashboard">
-			<form action="#" class="form-horizontal">
-				<div class="control-group">
-					<label class="control-label">标题</label>
-					<div class="controls">
-						<span>内容</span>
+			<div class="portlet box blue">
+				<div class="portlet-title">
+					<div class="caption"><i class="icon-reorder"></i>用户列表</div>
+					<div class="tools">
+						<a href="javascript:;" class="collapse"></a>
+						<a href="javascript:;" class="reload"></a>
 					</div>
 				</div>
-			</form>
+				<div class="portlet-body form">
+					<div class="row-fluid" id="userlist"></div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
-<jsp:include page="base/footer.jsp"></jsp:include>
+<jsp:include page="dependency/tableDependency.jsp"/>
+<script src="js/customer/userlist.js"></script>
+<jsp:include page="base/footer.jsp"/>

@@ -22,7 +22,7 @@
 	<div class="logo"></div>
 
 	<div class="content row-fluid">
-		<form class="form-vertical login-form" action="/user/login"
+		<form class="form-vertical login-form" action="javascript:;"
 			method="post">
 			<h3 class="form-title">用户登陆中心</h3>
 			<div id="errorMsgId">
@@ -47,7 +47,7 @@
 			</div>
 			<div class="form-actions" style="margin-left: -10px">
 				<label class="checkbox"> 
-					<input id="remember"style="margin-top: 1px;"type="checkbox" name="remember" /> <span>记住</span>
+					<input id="remember"style="margin-top: 1px;"type="checkbox"> <span>记住</span>
 				</label> 
 				<a id="signBtn" href="javascript:void(0)" class="btn blue pull-right">登陆 <i class="icon-signin"></i></a>
 			</div>

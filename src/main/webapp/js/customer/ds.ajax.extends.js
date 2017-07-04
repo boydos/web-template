@@ -1,10 +1,18 @@
 (function($){
 	ds = (typeof ds !== "undefined")?ds:{};
-	
-	ds.post =  function (url,params,succFunc,errFunc) {
+	ds.post = function (url,params,succFunc,errFunc) {
+		return ds.postAndGet(url,params,succFunc,errFunc,"post");
+	}
+	ds.get = function (url,params,succFunc,errFunc) {
+		return ds.postAndGet(url,params,succFunc,errFunc,"get");
+	}
+	ds.postAndGet =  function (url,params,succFunc,errFunc,method) {
 		var deferred = $.Deferred();
+		if(method !="get") {
+			method ="post";
+		}
 		$.ajax({
-	        "type" : "post",
+	        "type" : method,
 	        "url" : url,
 	        "dataType" : "json",
 	        "data" : params,

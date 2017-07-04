@@ -9,6 +9,8 @@ function Login() {
 	this.rmbDom=$("#remember");
 	
 	this.signBtn=$("#signBtn");
+	this.loginUrl = "user/login";
+	this.goHomeUrl ="user/goHome";
 }
 Login.prototype = {
 	bindEvent : function() {
@@ -19,6 +21,22 @@ Login.prototype = {
 		var username =this.nameDom.val();
 		var password = this.passDom.val();
 		var remember = this.rmbDom.attr("checked")=="checked";
-		//ds.info(this.errDom,"正在登陆请稍后..."+username+"-"+password+"-"+remember);
+		ds.info(this.errDom,"正在登陆请稍后...");
+		var data = {
+				account:username,
+				password:password
+		};
+		ds.post(this.loginUrl,data,$.hitch(this,this.success),$.hitch(this,this.error));
+	},
+	success : function (data) {
+		if(data.s==1) {
+			ds.info(this.errDom,data.i||"数据操作成功");
+			window.location.href=this.goHomeUrl;
+		} else {
+			ds.error(this.errDom,data.i||"数据操作失败");
+		}
+	},
+	error : function(data) {
+		ds.error(this.errDom,data.i||"操作失败,服务器忙...");
 	}
 }

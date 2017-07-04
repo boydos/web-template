@@ -4,11 +4,11 @@ import org.apache.ibatis.type.Alias;
 
 @Alias("user")
 public class User {
-	private long id;
+	private long id=-1L;
 	private String nickname;
 	private String account;
 	private String password;
-	private long roleId;
+	private long roleId =-1L;
 	private String date;
 	public long getId() {
 		return id;

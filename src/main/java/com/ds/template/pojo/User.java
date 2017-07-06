@@ -54,7 +54,7 @@ public class User {
 		model.set("id", id);
 		model.set("nickname", nickname);
 		model.set("account", account);
-		model.set("password", password);
+		//model.set("password", password);
 		model.set("roleId", roleId);
 		model.set("date", date);
 		return model;

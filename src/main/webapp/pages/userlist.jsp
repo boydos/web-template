@@ -28,10 +28,16 @@
 					<div class="tabbable portlet-tabs">
 						 <ul class="nav nav-tabs">
 								<li><a href="#rolelist" data-toggle="tab">角色列表</a></li>
-								<li class="active"><a href="#userlist" data-toggle="tab">用户列表</a></li>
+								<li class="active"><a href="#userlistTab" data-toggle="tab">用户列表</a></li>
 						</ul>
 						<div class="tab-content">
-						  　　<div class="tab-pane active" id="userlist">
+						  　　<div class="tab-pane active" id="userlistTab">
+						  		<div class="row-fluid" style="margin-top:-15px">
+						  			<a id="createUserBtn" class="btn-sm blue btn" href="javascript:;">创建用户</a>
+						  		</div>
+						  		<div class="row-fluid" id="userlist" style="margin-top:15px">
+						  		
+						  		</div>
 						    </div>
 						    <div class="tab-pane" id="rolelist">
 						    </div>
@@ -43,5 +49,6 @@
 	</div>
 </div>
 <jsp:include page="dependency/tableDependency.jsp"/>
+<jsp:include page="dependency/dialogDependency.jsp"/>
 <script src="js/customer/userlist.js"></script>
 <jsp:include page="base/footer.jsp"/>

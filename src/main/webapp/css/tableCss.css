@@ -9,6 +9,9 @@ table {
 .tabbable > .nav-tabs > li > a {
 	color: #FFF;
 }
+.tabbable > .nav-tabs > li > a:hover {
+	color: #000000;
+}
 .table {
     width: 100%;
     max-width: 100%;

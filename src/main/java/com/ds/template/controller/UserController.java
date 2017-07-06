@@ -104,6 +104,12 @@ public class UserController {
 	@RequestMapping(value="register",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public String register(User user) {
+		user.setRoleId(0);
+		return createUser(user);
+	}
+	@RequestMapping(value="createUser",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+	@ResponseBody
+	public String createUser(User user) {
 		if(StringUtils.isEmpty(user.getAccount())) {
 			return JsonHelper.getError("用户账号不能为空");
 		}
@@ -114,7 +120,7 @@ public class UserController {
 			return JsonHelper.getError("用户昵称不能为空");
 		}
 		if(user.getRoleId() == -1) {
-			user.setRoleId(0);
+			return JsonHelper.getError("用户角色不能为空");
 		}
 		user.setPassword(StringUtils.EncoderByMd5(user.getPassword())); //md5 
 		int ret =userService.createUser(user);
@@ -122,6 +128,25 @@ public class UserController {
 			return JsonHelper.getSuccess("用户注册成功");
 		}
 		return JsonHelper.getError("用户注册失败");
+	}
+	@RequestMapping(value="updateUser",produces="application/json;charset=UTF-8")
+	@ResponseBody
+	public String updateUser(String id,String nickname,String roleId) {
+		if(StringUtils.isEmpty(id)) {
+			return JsonHelper.getError("用户ID不能为空");
+		}
+		if(StringUtils.isEmpty(nickname)) {
+			return JsonHelper.getError("用户昵称不能为空");
+		}
+		if(!StringUtils.isNumber(roleId)||"-1".equals(roleId)) {
+			return JsonHelper.getError("用户角色不能为空");
+		}
+		Log.d(String.format("updateUser id=%s nick=%s roleId=%s", id,nickname,roleId));
+		int ret=userService.updateUser(Long.parseLong(id),nickname,Long.parseLong(roleId));
+		if(ret>0) {
+			return JsonHelper.getSuccess("用户更新成功");
+		}
+		return JsonHelper.getError("用户更新失败");
 	}
 	@RequestMapping(value="deleteUser",produces="application/json;charset=UTF-8")
 	@ResponseBody
@@ -137,5 +162,46 @@ public class UserController {
 	}
 	
 	//-------------User Role--------------------
-	
+	@RequestMapping(value="getRoles",produces="application/json;charset=UTF-8")
+	@ResponseBody
+	public String getRoles() {
+		List<JsonModel> data =userService.getRoles();
+		JsonModel response = JsonHelper.getSuccessModel("用户角色获取成功");
+		response.set("data", data);
+		response.set("total", data.size());
+		return response.toJson();
+	}
+	@RequestMapping(value="createRole",produces="application/json;charset=UTF-8")
+	@ResponseBody
+	public String createRole(String name) {
+		if(StringUtils.isEmpty(name)) return JsonHelper.getError("角色名称不能为空");
+		int ret = userService.createRole(name);
+		if(ret>0) {
+			return JsonHelper.getSuccess("角色创建成功");
+		}
+		return JsonHelper.getError("角色创建失败");
+	}
+	@RequestMapping(value="updateRole",produces="application/json;charset=UTF-8")
+	@ResponseBody
+	public String updateRole(String id,String name) {
+		if(!StringUtils.isNumber(id)) return JsonHelper.getError("角色ID不能为空");
+		if(StringUtils.isEmpty(name)) return JsonHelper.getError("角色名称不能为空");
+		int ret = userService.updateRole(Long.parseLong(id),name);
+		if(ret>0) {
+			return JsonHelper.getSuccess("角色更新成功");
+		}
+		return JsonHelper.getError("角色更新失败");
+	}
+	@RequestMapping(value="deleteRole",produces="application/json;charset=UTF-8")
+	@ResponseBody
+	public String deleteRole(String id) {
+		if(StringUtils.isEmpty(id)) {
+			return JsonHelper.getError("角色ID不能为空");
+		}
+		int ret=userService.deleteRole(Long.parseLong(id));
+		if(ret>0) {
+			return JsonHelper.getSuccess("角色删除成功");
+		}
+		return JsonHelper.getError("角色删除失败");
+	}
 }

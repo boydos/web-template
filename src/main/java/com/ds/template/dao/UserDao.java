@@ -21,6 +21,7 @@ public interface UserDao {
 	int deleteUser(long id);
 	//-----------role
 	List<Role> getRoles();
+	int createRole(Role role);
 	int deleteRole(long id);
-	int updateRole(@Param("role")Role role);
+	int updateRole(Role role);
 }

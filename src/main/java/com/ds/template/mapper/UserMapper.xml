@@ -21,4 +21,53 @@
 	    insert into user(account,nickname,password,roleId,date) values(#{account},#{nickname},#{password},#{roleId},#{date})
 	</insert>
 	
+	<delete id="deleteUser" parameterType="long" >
+		delete from user where id = #{id};
+	</delete>
+	<select id="getRoles" resultType="role">
+		select * from roles
+	</select>
+	<insert id="createRole" parameterType="role">
+		<selectKey resultType="java.lang.Short" order="AFTER" keyProperty="id">
+			SELECT max(id)+1 AS id from roles
+		</selectKey>
+	    insert into roles(id,name,date) values(#{id},#{name},#{date})
+	</insert>
+	<delete id="deleteRole" parameterType="long" >
+		delete from roles where id = #{id};
+	</delete>
+	
+	<update id="updateUser" parameterType="user">
+	   update user 
+	   <set>
+	       <if test="nickname != null ">
+	          nickname = #{nickname},
+	       </if>
+	       <if test="account != null ">
+	          account = #{account},
+	       </if>
+	       <if test="password != null ">
+	          password = #{password},
+	       </if>
+	        <if test="roleId != null and roleId != -1 ">
+	          roleId = #{roleId},
+	       </if>
+	       <if test="date != null ">
+	          date = #{date}
+	       </if>
+	   </set>
+	   where id = #{id}
+	</update>
+	<update id="updateRole" parameterType="role">
+	   update roles 
+	   <set>
+	       <if test="name != null ">
+	          name = #{name},
+	       </if>
+	       <if test="date != null ">
+	          date = #{date}
+	       </if>
+	   </set>
+	   where id = #{id}
+	</update>
 </mapper>

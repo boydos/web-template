@@ -47,13 +47,13 @@ DialogModal.prototype = {
 			var itemDom=$('<div></div>');
 			if(item["type"]==null || item["type"] === "readonly") {
 				itemDom=$('<label style="margin-top:7px" class="m-wrap"></label>').appendTo(valueDom);
-				item["value"]&&itemDom.text(item["value"]);
+				item["value"]!=null&&itemDom.text(item["value"]);
 			} else if(item["type"] ==="text") {
 				itemDom=$('<input class="m-wrap" type="text"/>').appendTo(valueDom);
-				item["value"]&&itemDom.val(item["value"]);
+				item["value"]!=null&&itemDom.val(item["value"]);
 			} else if(item["type"] ==="password") {
 				itemDom=$('<input class="m-wrap" type="password"/>').appendTo(valueDom);
-				item["value"]&&itemDom.val(item["value"]);
+				item["value"]!=null&&itemDom.val(item["value"]);
 			} else if(item["type"] ==="select") {
 				itemDom=$('<select class="chosen" data-placeholder="请选择..." tabindex="1">').appendTo(valueDom);
 				if(item["value"]!=null) {
@@ -64,10 +64,10 @@ DialogModal.prototype = {
 				
 			}else if(item["type"] ==="textarea"){
 				itemDom=$('<textarea />').appendTo(valueDom);
-				item["value"]&&itemDom.val(item["value"]);
+				item["value"]!=null&&itemDom.val(item["value"]);
 			} else {
 				itemDom=$('<input class="m-wrap" type="'+item["type"]+'"/>').appendTo(valueDom);
-				item["value"]&&itemDom.val(item["value"]);
+				item["value"]!=null&&itemDom.val(item["value"]);
 			}
 			item["key"]&&itemDom.attr("key",item["key"]);
 			if(item["description"]) {
@@ -171,3 +171,11 @@ DialogModal.prototype = {
 	    }
 		
 }
+$(function(){
+	ds = (typeof ds !== "undefined")?ds:{};
+	ds.showDialog =function(data) {
+		var dialog = new DialogModal(data);
+		dialog.init();
+		dialog.show();
+	}
+});

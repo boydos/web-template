@@ -69,6 +69,7 @@
 });
 function deleteFunc ( evt) {
 	console.info( evt );
+	this.tablejs.getValuesOn($(evt.target));
 	console.info("deleteFuncData",this.getValuesOn( $(evt.target))); //获取单个行的数据
 	console.info("checked",this.getValues(true));//获取checkbox选中的行的数据
 } -->

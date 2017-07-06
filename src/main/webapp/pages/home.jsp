@@ -23,9 +23,9 @@
 		<div id="dashboard">
 			<form action="#" class="form-horizontal">
 				<div class="control-group">
-					<label class="control-label">标题</label>
+					<label class="control-label"></label>
 					<div class="controls">
-						<span>内容</span>
+						<span></span>
 					</div>
 				</div>
 			</form>

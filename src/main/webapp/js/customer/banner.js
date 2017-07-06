@@ -4,8 +4,51 @@
 
 $(document).ready(function(){
 	App.init();
+	var banner = new BannerJs();
+	banner.bindEvent();
+	banner.verify();
 });
 
+function BannerJs () {
+	this.domName=$("#userNameId");
+	this.domProfile=$("#myProfileId");
+	this.domLoginOut=$("#loginOutId");
+	
+	this.loginOutUrl="user/loginOut";
+	this.verifyTokenUrl="user/verifyToken"
+	this.goLogin="pages/login.jsp"
+	this.tokenKey="user_token_for_zongheng";
+}
+BannerJs.prototype = {
+		bindEvent:function () {
+			this.domLoginOut.unbind("click");
+			this.domLoginOut.bind("click",$.hitch(this,this.loginOut));
+		},
+		goLoginJsp: function () {
+			window.location.href = this.goLogin;
+		},
+		loginOut : function () {
+			var token = $.cookie(this.tokenKey);
+			if(token!=null) {
+				$.cookie(this.tokenKey,null);
+			}
+			ds.post(this.loginOutUrl,{token:token},$.hitch(this,this.goLoginJsp),$.hitch(this,this.goLoginJsp));
+		},
+		verify:function () {
+			var token = $.cookie(this.tokenKey);
+			if(token!=null) {
+				ds.post(this.verifyTokenUrl,{token:token},$.hitch(this,this.verifySuccess),$.hitch(this,this.goLoginJsp))
+			} else this.goLoginJsp();
+		},
+		verifySuccess : function (data) {
+			console.info(data);
+			if(data.s==1) {
+				this.domName.html(data["nickname"]);
+			} else {
+				this.goLoginJsp();
+			}
+		}
+}
 /*  <ul class="nav navbar-nav">
       <li class="active"> <a href="javascript:void(0);">Home</a></li>
       <li> <a href="javascript:void(0);">About</a></li>

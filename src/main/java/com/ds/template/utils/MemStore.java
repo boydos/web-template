@@ -12,7 +12,8 @@ import com.ds.utils.DateUtil;
 public class MemStore implements IConstrants {
 	
 	private static Map<String,Object> map = new HashMap<String,Object>();
-
+	public final static int TOKEN_TIMEOUT=30*60*1000;
+	public final static String CURRENT_USER="current_user_ds";
 	public static void put(String key,Object value) {
 		map.put(key, value);
 	}

@@ -11,4 +11,7 @@
 <script src="js/customer/ds.ajax.extends.js"></script>
 <script src="js/customer/loadingHelper.js"></script>
 <script src="js/customer/ds.process.js"></script>
+<script src="js/jquery.md5.js"></script>
+<script src="js/jquery.base64.js"></script>
+
 <jsp:include page="commetrojs.jsp" flush="true"/>

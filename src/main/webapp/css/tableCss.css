@@ -6,6 +6,9 @@ table {
     border-spacing: 0px;
     background-color: transparent;
 }
+.tabbable > .nav-tabs > li > a {
+	color: #FFF;
+}
 .table {
     width: 100%;
     max-width: 100%;

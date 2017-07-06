@@ -20,16 +20,23 @@
 			</div>
 		</div>
 		<div id="dashboard">
-			<div class="portlet box blue">
+			<div class="portlet box blue tabbable">
 				<div class="portlet-title">
-					<div class="caption"><i class="icon-reorder"></i>用户列表</div>
-					<div class="tools">
-						<a href="javascript:;" class="collapse"></a>
-						<a href="javascript:;" class="reload"></a>
-					</div>
+					<div class="caption"><i class="icon-reorder"></i>用户管理</div>
 				</div>
 				<div class="portlet-body form">
-					<div class="row-fluid" id="userlist"></div>
+					<div class="tabbable portlet-tabs">
+						 <ul class="nav nav-tabs">
+								<li><a href="#rolelist" data-toggle="tab">角色列表</a></li>
+								<li class="active"><a href="#userlist" data-toggle="tab">用户列表</a></li>
+						</ul>
+						<div class="tab-content">
+						  　　<div class="tab-pane active" id="userlist">
+						    </div>
+						    <div class="tab-pane" id="rolelist">
+						    </div>
+						 </div>
+				    </div>
 				</div>
 			</div>
 		</div>

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.ds.json.JsonModel;
 import com.ds.template.dao.UserDao;
+import com.ds.template.pojo.Role;
 import com.ds.template.pojo.User;
 import com.ds.template.utils.MemStore;
 import com.ds.utils.StringUtils;
@@ -35,7 +36,10 @@ public class UserService {
 		user.setDate(MemStore.getNowDateTime());
 		return userDao.createUser(user);
 	}
-	
+	public int deleteUser(long id) {
+		if(id <=-1) return -1;
+		return userDao.deleteUser(id);
+	}
 	public List<JsonModel> getUsers(int start,int count) {
 		List<User> users = userDao.getUsers(start, count);
 		return changeUser(users);
@@ -49,6 +53,16 @@ public class UserService {
 		return null;
 	}
 	
+	//---------User Role----
+	public List<JsonModel> changeRole(List<Role> roles) {
+		List<JsonModel> list = new ArrayList<>();
+		if(!StringUtils.isEmpty(roles)) {
+			for(Role role:roles) {
+				list.add(role.toModel());
+			}
+		}
+		return list;
+	}
 	public List<JsonModel> changeUser(List<User> users) {
 		List<JsonModel> list = new ArrayList<>();
 		if(!StringUtils.isEmpty(users)) {

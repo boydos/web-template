@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import com.ds.template.pojo.Role;
 import com.ds.template.pojo.User;
 
 @Repository("userDao")
@@ -15,4 +16,11 @@ public interface UserDao {
 	User login(@Param("account")String account,@Param("password")String password);
 	int getUserSize();
 	int createUser(User user);
+	
+	int updateUser(User user);
+	int deleteUser(long id);
+	//-----------role
+	List<Role> getRoles();
+	int deleteRole(long id);
+	int updateRole(@Param("role")Role role);
 }

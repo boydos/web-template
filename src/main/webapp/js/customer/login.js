@@ -10,7 +10,7 @@ function Login() {
 	
 	this.signBtn=$("#signBtn");
 	this.loginUrl = "user/login";
-	this.goHomeUrl ="user/goHome";
+	this.goHomeUrl ="pages/home.jsp";
 }
 Login.prototype = {
 	bindEvent : function() {
@@ -31,6 +31,7 @@ Login.prototype = {
 	success : function (data) {
 		if(data.s==1) {
 			ds.info(this.errDom,data.i||"数据操作成功");
+			if(data["token"]!=null)$.cookie("user_token_for_zongheng",data.token);
 			window.location.href=this.goHomeUrl;
 		} else {
 			ds.error(this.errDom,data.i||"数据操作失败");

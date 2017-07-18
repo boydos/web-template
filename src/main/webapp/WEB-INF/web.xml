@@ -68,11 +68,11 @@
   <!-- base service config -->
   <servlet>
   	  <servlet-name>pictrueServlet</servlet-name>
-  	  <servlet-class>com.sdt.platform.PictureServlet</servlet-class>
+  	  <servlet-class>com.ds.template.PictureServlet</servlet-class>
   </servlet>
   <servlet>
   	  <servlet-name>downloadServlet</servlet-name>
-  	  <servlet-class>com.sdt.platform.DownloadServlet</servlet-class>
+  	  <servlet-class>com.ds.template.DownloadServlet</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>downloadServlet</servlet-name>

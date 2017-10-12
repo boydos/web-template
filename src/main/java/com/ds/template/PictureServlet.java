@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.ds.template.utils.PlatformUtils;
 import com.ds.utils.FileUtils;
+import com.ds.utils.Log;
 import com.ds.utils.StringUtils;
 
 public class PictureServlet extends HttpServlet {
@@ -29,11 +30,8 @@ public class PictureServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		 String type=req.getParameter("type");
-		 if("app".equalsIgnoreCase(type)){
-			// ImageDirPath="";
-		 } else if("video".equalsIgnoreCase(type)){
-		 } else if("live".equalsIgnoreCase(type)){
-		 }else {
+		 if("apk".equalsIgnoreCase(type)){
+			 //ImageDirPath =AppStoreHelper.getAppImgDirectory();
 		 }
 		try {
 			String page = req.getPathInfo();
@@ -43,22 +41,25 @@ public class PictureServlet extends HttpServlet {
 			page = page.substring(1);
 			try {
 				resp.reset();
+				System.out.println("image path: "+page);
 				String imagePath = ImageDirPath+"/"+page;
 				if(!new File(imagePath).exists()) {
 					imagePath=ImageDirPath+"/default.jpg";
 				}
 				FileInputStream fis = FileUtils.getInputStream(imagePath);
-				resp.setContentType("image/jpeg");
-				resp.setContentLength(fis.available());
-				OutputStream os = resp.getOutputStream();
-				FileUtils.inputStreamToOutStream(fis, os);
-				fis.close();
-				os.close();
+				if(fis!=null) {
+					resp.setContentType("image/jpeg");
+					resp.setContentLength(fis.available());
+					OutputStream os = resp.getOutputStream();
+					FileUtils.inputStreamToOutStream(fis, os);
+					fis.close();
+					os.close();
+				}
 			} catch (Exception e) {
-				e.printStackTrace();
+				Log.e(String.format("%s pic not found", e.getMessage()));
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			Log.e(String.format("%s", e.getMessage()));
 			PrintWriter pw = resp.getWriter();
 			pw.print(e.getMessage());
 			pw.flush();
